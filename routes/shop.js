@@ -6,12 +6,14 @@ const rootDir = require('../util/path');
 
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
-  res.sendFile(path.join(rootDir, 'views', 'shop.html'));
-});
+const userController= require('../controllers/user')
 
-router.get('/contactus', (req, res, next) => {
-    res.sendFile(path.join(rootDir, 'views', 'contactus.html'));
+router.get('/', (req, res, next) => {
+    res.sendFile(path.join(rootDir, 'views', 'shop.html'));
   });
+
+router.get('/contactus',userController.addContact );
+
+  router.post('/success', userController.postContact);
 
 module.exports = router;
